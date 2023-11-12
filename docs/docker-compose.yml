@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  clash-meta-dashboard:
+    container_name: clash-meta-dashboard
+    image: ghcr.io/devsolux/clash-meta-dashboard
+    restart: always
+    ports:
+      - '80:80'
+
+  # optional
+  meta:
+    container_name: meta
+    image: docker.io/devsolux/clash-meta:Alpha
+    restart: always
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./config.yaml:/root/.config/clash
